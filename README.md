@@ -2,7 +2,6 @@
 
 # asdf-terrascan [![Build](https://github.com/hpdobrica/asdf-terrascan/actions/workflows/build.yml/badge.svg)](https://github.com/hpdobrica/asdf-terrascan/actions/workflows/build.yml) [![Lint](https://github.com/hpdobrica/asdf-terrascan/actions/workflows/lint.yml/badge.svg)](https://github.com/hpdobrica/asdf-terrascan/actions/workflows/lint.yml)
 
-
 [terrascan](https://runterrascan.io/docs/getting-started/) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
