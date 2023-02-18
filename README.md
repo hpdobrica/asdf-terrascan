@@ -43,6 +43,8 @@ asdf global terrascan latest
 terrascan version
 ```
 
+When installing, you can specify an override for architecture via the ASDF_TERRASCAN_OVERWRITE_ARCH environment variable. For example, if you are running on an ARM64 system, you can set ASDF_TERRASCAN_OVERWRITE_ARCH to amd64 to install the amd64 version of terrascan.
+
 Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
 install & manage versions.
 
