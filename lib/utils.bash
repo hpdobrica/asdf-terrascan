@@ -35,26 +35,20 @@ list_all_versions() {
 }
 
 get_platform() {
-  local silent=${1:-}
   local platform=""
 
   platform="$(uname -s)"
 
-  case "$platform" in
-  Linux | Darwin)
-    [ -z "$silent" ] && echo "Platform '${platform}' supported!"
-    ;;
-  *)
+  if [ "$platform" != "Linux" ] && [ "$platform" != "Darwin" ]; then
     fail "Platform '${platform}' not supported!"
-    ;;
-  esac
+  fi
 
   printf "%s" "$platform"
 }
 
 get_arch() {
   local arch=""
-  local arch_check=${ASDF_GOLANG_OVERWRITE_ARCH:-"$(uname -m)"}
+  local arch_check=${ASDF_TERRASCAN_OVERWRITE_ARCH:-"$(uname -m)"}
   case "${arch_check}" in
   x86_64 | amd64) arch="x86_64" ;;
   i686 | i386 | 386) arch="i386" ;;
@@ -74,7 +68,7 @@ download_release() {
   arch="$(get_arch)"
   platform="$(get_platform)"
 
-  url=$(curl -s https://api.github.com/repos/$GH_REPO_REF/releases/tags/v${version} | grep -o -E "https://.+?_${arch}_${platform}.tar.gz")
+  url=$(curl -s https://api.github.com/repos/$GH_REPO_REF/releases/tags/v${version} | grep -o -E "https://.+?_${platform}_${arch}.tar.gz")
 
   echo "* Downloading $TOOL_NAME release $version..."
   curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
