@@ -34,37 +34,37 @@ list_all_versions() {
   list_github_tags
 }
 
-get_platform () {
-    local silent=${1:-}
-    local platform=""
+get_platform() {
+  local silent=${1:-}
+  local platform=""
 
-    platform="$(uname -s)"
+  platform="$(uname -s)"
 
-    case "$platform" in
-        Linux|Darwin)
-            [ -z "$silent" ] && msg "Platform '${platform}' supported!"
-            ;;
-        *)
-            fail "Platform '${platform}' not supported!"
-            ;;
-    esac
+  case "$platform" in
+  Linux | Darwin)
+    [ -z "$silent" ] && echo "Platform '${platform}' supported!"
+    ;;
+  *)
+    fail "Platform '${platform}' not supported!"
+    ;;
+  esac
 
-    printf "%s" "$platform"
+  printf "%s" "$platform"
 }
 
-get_arch () {
-    local arch=""
-    local arch_check=${ASDF_GOLANG_OVERWRITE_ARCH:-"$(uname -m)"}
-    case "${arch_check}" in
-        x86_64|amd64) arch="x86_64"; ;;
-        i686|i386|386) arch="i386"; ;;
-        aarch64|arm64) arch="arm64"; ;;
-        *)
-            fail "Arch '${arch_check}' not supported!"
-            ;;
-    esac
+get_arch() {
+  local arch=""
+  local arch_check=${ASDF_GOLANG_OVERWRITE_ARCH:-"$(uname -m)"}
+  case "${arch_check}" in
+  x86_64 | amd64) arch="x86_64" ;;
+  i686 | i386 | 386) arch="i386" ;;
+  aarch64 | arm64) arch="arm64" ;;
+  *)
+    fail "Arch '${arch_check}' not supported!"
+    ;;
+  esac
 
-    printf "%s" "$arch"
+  printf "%s" "$arch"
 }
 
 download_release() {
